@@ -1,4 +1,5 @@
-﻿using WSProductos1001.Entities;
+﻿using WSProductos1001.Domain.Repository;
+using WSProductos1001.Entities;
 
 namespace WSProductos1001.Test.Patio;
 
@@ -16,6 +17,7 @@ public class PatioUnitTest
             NumberSalePoint = 1
         };
         IPatioRepository patioRepository = new PatioRepository();
+        patioRepository.CreateAsync(patio);
         
     }
 }
