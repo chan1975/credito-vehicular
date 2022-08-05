@@ -11,4 +11,12 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\WSProductos1001.Domain\WSProductos1001.Domain.csproj" />
+      <ProjectReference Include="..\WSProductos1001.Entities\WSProductos1001.Entities.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="..\WSProductos1001.IntegrationTest" />
+    </ItemGroup>
+
 </Project>

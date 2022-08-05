@@ -1,6 +1,10 @@
+using WSProductos1001.Domain.Extensions.ServicesCollection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+//Domain Services
+builder.Services.AddDependency();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -23,3 +27,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+public partial class Program { }
