@@ -6,7 +6,7 @@ namespace WSProductos1001.Domain.Extensions.ServicesCollection;
 
 public static class IoC
 {
-    public static IServiceCollection AddDependency(this IServiceCollection services)
+    public static IServiceCollection AddDependencyDomain(this IServiceCollection services)
     {
         services.AddScoped<IPatioService, PatioService>();
         return services;

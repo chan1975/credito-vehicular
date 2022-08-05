@@ -4,5 +4,5 @@ namespace WSProductos1001.Domain.Repository;
 
 public interface IPatioRepository
 {
-    Task<EPatio> CreateAsync(EPatio entity);
+    Task<IEnumerable<EPatio>> GetAllAsync();
 }

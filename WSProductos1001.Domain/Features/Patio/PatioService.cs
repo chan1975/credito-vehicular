@@ -1,16 +1,30 @@
-﻿using WSProductos1001.Domain.Services;
+﻿using WSProductos1001.Domain.Repository;
+using WSProductos1001.Domain.Services;
 using WSProductos1001.Entities;
 
 namespace WSProductos1001.Domain.Features.Patio;
 
 public class PatioService: IPatioService
 {
-    public async Task<IEnumerable<EPatio>> GetAll()
+    private readonly IPatioRepository _patioRepository;
+    
+    public PatioService(IPatioRepository patioRepository)
     {
-        var patioList = new List<EPatio>()
-        {
-            new EPatio() { Id = 1, Name = "Patio 1", Address = "Calle1", Phone = "123456789", NumberSalePoint = 1 },
-        };
+        _patioRepository = patioRepository;
+    }
+    public async Task<IEnumerable<EPatio>> GetAllAsync()
+    {
+        var patioList = await _patioRepository.GetAllAsync();
         return patioList;
+    }
+
+    public Task<EPatio?> GetByIdAsync(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<EPatio> CreateAsync(EPatio patio)
+    {
+        throw new NotImplementedException();
     }
 }

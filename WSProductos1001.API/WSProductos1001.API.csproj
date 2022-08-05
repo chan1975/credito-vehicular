@@ -14,6 +14,7 @@
     <ItemGroup>
       <ProjectReference Include="..\WSProductos1001.Domain\WSProductos1001.Domain.csproj" />
       <ProjectReference Include="..\WSProductos1001.Entities\WSProductos1001.Entities.csproj" />
+      <ProjectReference Include="..\WSProductos1001.Repository\WSProductos1001.Repository.csproj" />
     </ItemGroup>
     <ItemGroup>
         <InternalsVisibleTo Include="..\WSProductos1001.IntegrationTest" />

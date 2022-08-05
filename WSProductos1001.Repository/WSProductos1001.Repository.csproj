@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\WSProductos1001.Domain\WSProductos1001.Domain.csproj" />
+      <ProjectReference Include="..\WSProductos1001.Infrastucture\WSProductos1001.Infrastucture.csproj" />
     </ItemGroup>
 
 </Project>
