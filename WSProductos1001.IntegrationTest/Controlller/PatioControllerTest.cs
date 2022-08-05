@@ -54,4 +54,12 @@ public class PatioControllerTest
         var response = await client.PostAsJsonAsync<EPatio>("/api/v1/patios", new() { Name = "Patio 1", Address = "Calle 1", NumberSalePoint = 1 });
         Assert.IsTrue(response.StatusCode == HttpStatusCode.BadRequest);
     }
+    [Test]
+    public async Task CreatePatioInvalidModel_ReturnBadRequest()
+    {
+        await using var app = new WSProductsApiApplication();
+        var client = app.CreateClient();
+        var response = await client.PostAsJsonAsync<EPatio>("/api/v1/patios", new() { Name = "Patio 1", Address = "Calle 1", Phone = "123456789", NumberSalePoint = -1 });
+        Assert.IsTrue(response.StatusCode == HttpStatusCode.BadRequest);
+    }
 }
