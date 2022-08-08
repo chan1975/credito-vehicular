@@ -1,4 +1,4 @@
-﻿using WSProductos1001.Infrastucture.Validators;
+﻿using WSProductos1001.Domain.Features.Patio;
 using WSProductos1001.UnitTest.Shared;
 
 namespace WSProductos1001.UnitTest.ValidationsModels;

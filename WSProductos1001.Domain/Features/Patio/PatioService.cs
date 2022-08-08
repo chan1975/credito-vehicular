@@ -1,4 +1,5 @@
-﻿using WSProductos1001.Domain.Repository;
+﻿using FluentValidation;
+using WSProductos1001.Domain.Repository;
 using WSProductos1001.Domain.Services;
 using WSProductos1001.Entities;
 
@@ -7,10 +8,12 @@ namespace WSProductos1001.Domain.Features.Patio;
 public class PatioService: IPatioService
 {
     private readonly IPatioRepository _patioRepository;
+    private readonly IValidator<EPatio> _validator;
     
-    public PatioService(IPatioRepository patioRepository)
+    public PatioService(IPatioRepository patioRepository, IValidator<EPatio> validator)
     {
         _patioRepository = patioRepository;
+        _validator = validator;
     }
     public async Task<IEnumerable<EPatio>> GetAllAsync()
     {
@@ -23,8 +26,10 @@ public class PatioService: IPatioService
         throw new NotImplementedException();
     }
 
-    public Task<EPatio> CreateAsync(EPatio patio)
+    public async Task<EPatio> CreateAsync(EPatio patio)
     {
-        throw new NotImplementedException();
+        await _validator.ValidateAndThrowAsync(patio);
+        return patio;
+        
     }
 }

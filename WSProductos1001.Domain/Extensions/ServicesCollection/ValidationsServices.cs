@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using WSProductos1001.Domain.Features.Patio;
 using WSProductos1001.Entities;
-using WSProductos1001.Infrastucture.Validators;
 
-namespace WSProductos1001.Infrastucture.Extensions.ServiceCollection;
+namespace WSProductos1001.Domain.Extensions.ServicesCollection;
 
 public static class ValidationsServices
 {

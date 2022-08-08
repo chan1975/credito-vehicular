@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using WSProductos1001.Entities;
 
-namespace WSProductos1001.Infrastucture.Validators;
+namespace WSProductos1001.Domain.Features.Patio;
 
 public class PatioValidator:AbstractValidator<EPatio>
 {
