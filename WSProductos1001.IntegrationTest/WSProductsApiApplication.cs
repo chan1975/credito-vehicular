@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -18,7 +19,10 @@ public class WSProductsApiApplication : WebApplicationFactory<Program>
         {
             services.RemoveAll(typeof(DbContextOptions<CreditContext>));
             services.AddDbContext<CreditContext>(options =>
-                options.UseInMemoryDatabase("Testing", root));
+            {
+                options.UseInMemoryDatabase("Testing", root);
+                options.ConfigureWarnings(x => x.Ignore(CoreEventId.ManyServiceProvidersCreatedWarning));
+            });
         });
 
         return base.CreateHost(builder);

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using WSProductos1001.Domain.Features.Agent;
 using WSProductos1001.Domain.Features.Brand;
 using WSProductos1001.Domain.Features.Patio;
 using WSProductos1001.Domain.Features.Vehicle;
@@ -11,8 +12,9 @@ public static class IoC
     public static IServiceCollection AddDependencyDomain(this IServiceCollection services)
     {
         services.AddScoped<IPatioService, PatioService>();
-        services.AddScoped<IVehicleService, VehicleService>();
+        services.AddTransient<IVehicleService, VehicleService>();
         services.AddScoped<IBrandService, BrandService>();
+        services.AddScoped<IAgentService, AgentService>();
         
         return services;
     }

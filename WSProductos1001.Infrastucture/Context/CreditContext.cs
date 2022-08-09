@@ -13,6 +13,7 @@ public class CreditContext: DbContext
     public DbSet<EPatio> Patios { get; set; }
     public DbSet<EVehicle> Vehicles { get; set; }
     public DbSet<EBrand> Brands { get; set; }
+    public DbSet<EAgent> Agents { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -20,5 +21,6 @@ public class CreditContext: DbContext
         new PatioConfig().Configure(modelBuilder.Entity<EPatio>());
         new VehicleConfig().Configure(modelBuilder.Entity<EVehicle>());
         new BrandConfig().Configure(modelBuilder.Entity<EBrand>());
+        new AgentConfig().Configure(modelBuilder.Entity<EAgent>());
     }
 }
