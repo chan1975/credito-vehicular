@@ -12,9 +12,11 @@ namespace WSProductos1001.Repository
         {
             _context = context;
         }
-        public Task<EVehicle> CreateAsync(EVehicle vehicle)
+        public async Task<EVehicle> CreateAsync(EVehicle vehicle)
         {
-            throw new NotImplementedException();
+            var newVehicle = await _context.Vehicles.AddAsync(vehicle);
+            await _context.SaveChangesAsync();
+            return newVehicle.Entity;
         }
 
         public Task DeleteAsync(EVehicle vehicleToDelete)
@@ -29,14 +31,16 @@ namespace WSProductos1001.Repository
 
         }
 
-        public Task<EVehicle> GetByIdAsync(int id)
+        public async Task<EVehicle> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var vehicle = await _context.Vehicles.FindAsync(id);
+            return vehicle;
         }
 
-        public Task UpdateAsync(EVehicle vehicleToUpdate)
+        public async Task UpdateAsync(EVehicle vehicleToUpdate)
         {
-            throw new NotImplementedException();
+            _context.Vehicles.Update(vehicleToUpdate);
+            await _context.SaveChangesAsync();
         }
     }
 }

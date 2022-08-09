@@ -9,6 +9,7 @@ public static class IoC
     {
         services.AddScoped<IPatioRepository, PatioRepository>();
         services.AddScoped<IVehicleRepository, VehicleRepository>();
+        services.AddScoped<IBrandRepository, BrandRepository>();
         return services;
     }
 }

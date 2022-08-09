@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WSProductos1001.Domain.Exceptions;
 using WSProductos1001.Domain.Services;
 using WSProductos1001.Entities;
 
@@ -27,6 +28,65 @@ namespace WSProductos1001.API.Controllers
                 return NoContent();
             }
             return Ok(result);
+        }
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<EVehicle>> GetById002(int id)
+        {
+            var result = await _service.GetByIdAsync(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<EVehicle>> Create203([FromBody] EVehicle vehicle)
+        {
+            try
+            {
+                var result = await _service.CreateAsync(vehicle);
+                return CreatedAtAction(nameof(GetById002), new { id = result.Id }, result);
+            }
+            catch (ValidationException ex) 
+            {
+                return BadRequest(ex.Message);
+            }
+            catch(BadRequestException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
+        }
+        [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<ActionResult<EVehicle>> Update204(int id, [FromBody] EVehicle vehicle)
+        {
+            try
+            {
+                await _service.UpdateAsync(id, vehicle);
+                
+                return NoContent();
+            }
+            catch (ValidationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (BadRequestException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }
