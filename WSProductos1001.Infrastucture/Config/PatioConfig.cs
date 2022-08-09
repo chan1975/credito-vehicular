@@ -11,9 +11,9 @@ public class PatioConfig: IEntityTypeConfiguration<EPatio>
         builder.ToTable("patio");
         builder.HasKey(p => p.Id);
         builder.Property(p => p.Id).HasColumnName("id");
-        builder.Property(p =>p.Name).IsRequired().HasColumnName("nombre").HasMaxLength(128);
-        builder.Property(p =>p.Address).IsRequired().HasColumnName("direccion").HasMaxLength(256);
-        builder.Property(p =>p.Phone).IsRequired().HasColumnName("telefono").HasMaxLength(16);
+        builder.Property(p =>p.Name).IsRequired().HasColumnName("nombre");
+        builder.Property(p =>p.Address).IsRequired().HasColumnName("direccion");
+        builder.Property(p =>p.Phone).IsRequired().HasColumnName("telefono");
         builder.Property(p => p.NumberSalePoint).IsRequired().HasColumnName("numero_punto_venta");
 
     }

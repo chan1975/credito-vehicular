@@ -8,6 +8,7 @@ public static class IoC
     public static IServiceCollection AddDependencyRepository(this IServiceCollection services)
     {
         services.AddScoped<IPatioRepository, PatioRepository>();
+        services.AddScoped<IVehicleRepository, VehicleRepository>();
         return services;
     }
 }

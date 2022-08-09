@@ -11,10 +11,12 @@ public class CreditContext: DbContext
     }
     
     public DbSet<EPatio> Patios { get; set; }
+    public DbSet<EVehicle> Vehicles { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
         new PatioConfig().Configure(modelBuilder.Entity<EPatio>());
+        new VehicleConfig().Configure(modelBuilder.Entity<EVehicle>());
     }
 }

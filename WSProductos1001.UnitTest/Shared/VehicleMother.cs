@@ -33,5 +33,21 @@ namespace WSProductos1001.UnitTest.Shared
                 LicensePlate = "ABC123",
             };
         }
+
+        public static EVehicle Sandero2022()
+        {
+            return new EVehicle()
+            {
+                Id = 2,
+                BrandId = 2,
+                TypeId = 2,
+                Model = "Sandero",
+                ChassisNumber = "812937hy128y812y",
+                Year = 2022,
+                Appraisal = 1000000,
+                CylinderCapacity = 1600,
+                LicensePlate = "CBA234",
+            };
+        }
     }
 }
