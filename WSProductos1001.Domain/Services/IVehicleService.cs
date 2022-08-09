@@ -13,5 +13,6 @@ namespace WSProductos1001.Domain.Services
         Task<EVehicle> GetByIdAsync(int id);
         Task<EVehicle> CreateAsync(EVehicle vehicle);
         Task UpdateAsync(int id, EVehicle vehicle);
+        Task DeleteAsync(int id);
     }
 }

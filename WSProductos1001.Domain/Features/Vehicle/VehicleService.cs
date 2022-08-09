@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using WSProductos1001.Domain.Exceptions;
 using WSProductos1001.Domain.Repository;
 using WSProductos1001.Domain.Services;
 using WSProductos1001.Entities;
@@ -29,6 +28,14 @@ namespace WSProductos1001.Domain.Features.Vehicle
             var newVehicle = await _vehicleRepository.CreateAsync(vehicle);
             return newVehicle;
 
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var vehicle = await _vehicleRepository.GetByIdAsync(id);
+            if (vehicle == null) throw new Exceptions.NotFoundException(nameof(EVehicle), id);
+            await _vehicleRepository.DeleteAsync(vehicle);
+            
         }
 
         public async Task<IEnumerable<EVehicle>> GetAllAsync()

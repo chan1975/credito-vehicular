@@ -88,6 +88,34 @@ namespace WSProductos1001.IntegrationTest.Controlller
             var responseFindVehicle = await client.GetFromJsonAsync<EVehicle>($"/api/v1/vehiculos/1");
             Assert.IsTrue(cretaUptate.Year == responseFindVehicle.Year);
         }
+        [Test]
+        public async Task DeleteVehicle_ReturnNotFound()
+        {
+            await using var app = new WSProductsApiApplication();
+            
+            var client = app.CreateClient();
+            var response = await client.DeleteAsync($"/api/v1/vehiculos/1");
+            Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.NotFound);
+        }
+        [Test]
+        public async Task DeleteVehicle_ReturnNoContent()
+        {
+            await using var app = new WSProductsApiApplication();
+            using (var scope = app.Services.CreateScope())
+            {
+                var provider = scope.ServiceProvider;
+                using (var context = provider.GetRequiredService<CreditContext>())
+                {
+                    await context.Database.EnsureCreatedAsync();
+                    await context.Brands.AddAsync(new EBrand { Name = "Hyndai" });
+                    await context.Vehicles.AddAsync(VehicleMother.Creta2018());
+                    await context.SaveChangesAsync();
+                }
+            }
+            var client = app.CreateClient();
+            var response = await client.DeleteAsync($"/api/v1/vehiculos/1");
+            Assert.IsTrue(response.StatusCode == System.Net.HttpStatusCode.NoContent);
+        }
 
     }
 }

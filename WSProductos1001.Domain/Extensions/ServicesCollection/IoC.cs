@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using WSProductos1001.Domain.Features.Brand;
 using WSProductos1001.Domain.Features.Patio;
 using WSProductos1001.Domain.Features.Vehicle;
 using WSProductos1001.Domain.Services;
@@ -11,6 +12,7 @@ public static class IoC
     {
         services.AddScoped<IPatioService, PatioService>();
         services.AddScoped<IVehicleService, VehicleService>();
+        services.AddScoped<IBrandService, BrandService>();
         
         return services;
     }

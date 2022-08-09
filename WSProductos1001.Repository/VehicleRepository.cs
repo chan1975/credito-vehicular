@@ -19,9 +19,10 @@ namespace WSProductos1001.Repository
             return newVehicle.Entity;
         }
 
-        public Task DeleteAsync(EVehicle vehicleToDelete)
+        public async Task DeleteAsync(EVehicle vehicleToDelete)
         {
-            throw new NotImplementedException();
+            _context.Vehicles.Remove(vehicleToDelete);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<EVehicle>> GetAllAsync()
