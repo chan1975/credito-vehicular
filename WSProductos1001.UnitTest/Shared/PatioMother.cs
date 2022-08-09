@@ -37,4 +37,25 @@ public static class PatioMother
             NumberSalePoint = 1
         };
     }
+    public static EPatio PatioNegativeNumberSalePoint()
+    {
+        return new EPatio
+        {
+            Id = 3,
+            Name = "Patio 1",
+            Address = "Patio 1",
+            Phone = "123456789",
+            NumberSalePoint = -1
+        };
+    }
+    public static EPatio Patio1ToCreate()
+    {
+        return new EPatio
+        {
+            Name = "Patio 1",
+            Address = "Patio 1",
+            Phone = "123456789",
+            NumberSalePoint = 1
+        };
+    }
 }
