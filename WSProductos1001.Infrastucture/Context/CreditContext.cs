@@ -18,6 +18,8 @@ public class CreditContext: DbContext
     public DbSet<MaritalStatus> MaritalStatuses { get; set; }
     public DbSet<SubjectCredit> SubjectCredits { get; set; }
     public DbSet<EClient> Clients { get; set; }
+    public DbSet<EAssignClient> AssignClients { get; set; }
+    public DbSet<ERequestCredit> RequestCredit { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -29,5 +31,7 @@ public class CreditContext: DbContext
         new MaritalStatusConfig().Configure(modelBuilder.Entity<MaritalStatus>());
         new SubjectCreditConfig().Configure(modelBuilder.Entity<SubjectCredit>());
         new ClientConfig().Configure(modelBuilder.Entity<EClient>());
+        new AssignClientConfig().Configure(modelBuilder.Entity<EAssignClient>());
+        new RequestCreditConfig().Configure(modelBuilder.Entity<ERequestCredit>());
     }
 }

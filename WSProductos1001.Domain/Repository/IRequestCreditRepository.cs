@@ -10,4 +10,5 @@ public interface IRequestCreditRepository
     Task<ERequestCredit> GetByIdAndRegsitryAsync(int id, int registryStatus);
     Task<ERequestCredit> UpdateAsync(ERequestCredit requestCredit);
     Task<ERequestCredit> GetRequestCreditByVehicleRegistry(int vehicleId, int registryStatus);
+    Task<ERequestCredit> GetRequestRegistryByClientIdAndPatioId(int clientId, int patioId, int registryStatus);
 }

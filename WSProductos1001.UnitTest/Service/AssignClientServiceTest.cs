@@ -15,6 +15,7 @@ public class AssignClientServiceTest
     private Mock<IClientRepository> _clientRepository;
     private Mock<IPatioRepository> _patioRepository;
     private IValidator<EAssignClient> _validator;
+    private Mock<IRequestCreditRepository> _requestCreditRepository;
 
     [SetUp]
     public void Setup()
@@ -23,7 +24,9 @@ public class AssignClientServiceTest
         _clientRepository = new Mock<IClientRepository>();
         _patioRepository = new Mock<IPatioRepository>();
         _validator = new ClientPatioValidator();
-        _assignClientService = new AssignClientService(_assignClientRepository.Object, _clientRepository.Object, _patioRepository.Object, _validator);
+        _requestCreditRepository = new Mock<IRequestCreditRepository>();
+        _assignClientService = new AssignClientService(_assignClientRepository.Object, _clientRepository.Object, 
+            _patioRepository.Object, _validator, _requestCreditRepository.Object);
     }
     
     [Test]
@@ -117,6 +120,40 @@ public class AssignClientServiceTest
             .Setup(x => x.GetByIdAsync(assignClient.PatioId))
             .Returns(Task.FromResult<EPatio>(PatioMother.Patio1Created()));
         Assert.ThrowsAsync<NotFoundException>(async() => await _assignClientService.UpdateAsync(idAssignClient,assignClient));
+    }
+
+    [Test]
+    public async Task DeleteAssign_InvalidAssignId_ReturnBadRequest()
+    {
+        _assignClientRepository
+            .Setup(x => x.GetByIdAsync(It.IsAny<int>()))
+            .Returns(Task.FromResult<EAssignClient>(null));
+        Assert.ThrowsAsync<NotFoundException>(async()=>await _assignClientService.DeleteAsync(It.IsAny<int>()));
+    }
+    [Test]
+    public async Task DeleteAssign_RequestCredit_ReturnBadRequest()
+    {
+        _assignClientRepository
+            .Setup(x => x.GetByIdAsync(It.IsAny<int>()))
+            .Returns(Task.FromResult<EAssignClient>(AssignClientMother.CesarPatio1Created()));
+        _requestCreditRepository
+            .Setup(x => x.GetRequestRegistryByClientIdAndPatioId(It.IsAny<int>(), It.IsAny<int>(),It.IsAny<int>()))
+            .Returns(Task.FromResult<ERequestCredit>(RequestCreditMother.CreditRequest2Created()));
+        Assert.ThrowsAsync<BadRequestException>(async()=>await _assignClientService.DeleteAsync(It.IsAny<int>()));
+    }
+    
+    [Test]
+    public async Task DeleteAssign_DeleteCalledOnce()
+    {
+        _assignClientRepository
+            .Setup(x => x.GetByIdAsync(It.IsAny<int>()))
+            .Returns(Task.FromResult<EAssignClient>(AssignClientMother.CesarPatio1Created()));
+        _requestCreditRepository
+            .Setup(x => x.GetRequestRegistryByClientIdAndPatioId(It.IsAny<int>(), It.IsAny<int>(),It.IsAny<int>()))
+            .Returns(Task.FromResult<ERequestCredit>(null));
+        await _assignClientService.DeleteAsync(It.IsAny<int>());
+        
+        _assignClientRepository.Verify(x => x.DeleteAsync( It.IsAny<EAssignClient>() ), Times.Once);
     }
     
 }

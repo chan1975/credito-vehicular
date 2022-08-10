@@ -52,13 +52,13 @@ public class PatioService : IPatioService
         patioToUpdate.NumberSalePoint = patio.NumberSalePoint;
         await _patioRepository.UpdateAsync(patioToUpdate);
     }
-
+    
     public async Task DeleteAsync(int id)
     {
         var patioToDelete = await _patioRepository.GetByIdAsync(id);
         if (patioToDelete == null) throw new Exceptions.NotFoundException(nameof(EPatio), id);
         var patioAssign = await _assignClientRepository.GetByPatioId(id);
-        if (patioAssign != null) throw new Exceptions.BadRequestException("Patio tiene asignados clientes");
+        if (patioAssign.Count() > 0) throw new Exceptions.BadRequestException("Patio tiene asignados clientes");
         await _patioRepository.DeleteAsync(patioToDelete);
     }
 }
