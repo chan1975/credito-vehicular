@@ -4,7 +4,7 @@ namespace WSProductos1001.UnitTest.Shared;
 
 public static class PatioMother
 {
-    public static EPatio Patio1()
+    public static EPatio Patio1Created()
     {
         return new EPatio
         {

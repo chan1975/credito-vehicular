@@ -5,4 +5,5 @@ namespace WSProductos1001.Domain.Repository;
 public interface IClientRepository
 {
     Task<EClient> CreateAsync(EClient client);
+    Task<EClient> GetByIdAsync(int id);
 }

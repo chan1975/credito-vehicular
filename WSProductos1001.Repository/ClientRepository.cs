@@ -19,4 +19,10 @@ public class ClientRepository : IClientRepository
         await _context.SaveChangesAsync();
         return result.Entity;
     }
+
+    public async Task<EClient> GetByIdAsync(int id)
+    {
+        var client = await _context.Clients.FindAsync(id);
+        return client;
+    }
 }

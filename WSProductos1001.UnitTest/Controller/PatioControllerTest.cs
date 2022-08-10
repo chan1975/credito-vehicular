@@ -42,7 +42,7 @@ public class PatioControllerTest
         int id = 1;
         patioServiceMock
             .Setup(x => x.GetByIdAsync(id))
-            .Returns(Task.FromResult(PatioMother.Patio1()));
+            .Returns(Task.FromResult(PatioMother.Patio1Created()));
         
         var patio =await controller.GetById002(id);
         var result = patio.Result as OkObjectResult;
@@ -66,7 +66,7 @@ public class PatioControllerTest
     [Test]
     public async Task Create_ReturnPatio()
     {
-        var mockPatio = PatioMother.Patio1();
+        var mockPatio = PatioMother.Patio1Created();
         patioServiceMock
             .Setup(x => x.CreateAsync(mockPatio))
             .Returns(Task.FromResult(mockPatio));

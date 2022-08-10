@@ -13,6 +13,7 @@ public static class IoC
         services.AddScoped<IAgentRepository, AgentRepository>();
         services.AddScoped<ICatalogRepository, CatalogRepository>();
         services.AddScoped<IClientRepository, ClientRepository>();
+        services.AddScoped<IAssignClientRepository, AssignClientRepository>();
         return services;
     }
 }

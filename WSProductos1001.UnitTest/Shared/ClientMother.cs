@@ -20,4 +20,39 @@ public static class ClientMother
             SubjectCredit = 2
         };
     }
+
+    public static EClient CesarCreated()
+    {
+        return new EClient()
+        {
+            Id = 1,
+            Address = "Calle falsa 123",
+            Identification = "123456789",
+            Names = "Cesar",
+            Phone = "123456789",
+            BirthDay = DateTime.Now,
+            LastNames = "Lopez",
+            MaritalStatus = 1,
+            SpouseIdentification = "123456789",
+            SpouseName = "Juana",
+            SubjectCredit = 2
+        };
+    }
+    public static EClient SandyCreated()
+    {
+        return new EClient()
+        {
+            Id = 2,
+            Address = "Calle falsa 123",
+            Identification = "123456789",
+            Names = "Cesar",
+            Phone = "123456789",
+            BirthDay = DateTime.Now,
+            LastNames = "Lopez",
+            MaritalStatus = 1,
+            SpouseIdentification = "123456789",
+            SpouseName = "Juana",
+            SubjectCredit = 2
+        };
+    }
 }

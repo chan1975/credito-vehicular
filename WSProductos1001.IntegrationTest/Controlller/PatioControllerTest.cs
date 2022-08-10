@@ -31,7 +31,7 @@ public class PatioControllerTest
             using(var context = provider.GetRequiredService<CreditContext>())
             {
                 await context.Database.EnsureCreatedAsync();
-                await context.Patios.AddAsync(PatioMother.Patio1());
+                await context.Patios.AddAsync(PatioMother.Patio1Created());
                 await context.Patios.AddAsync(PatioMother.Patio2());
                 await context.SaveChangesAsync();
             }

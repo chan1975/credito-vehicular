@@ -14,7 +14,7 @@ public class PatioValidationTest
     [Test]
     public void PatioValid_ReturnTrue()
     {
-        var result = _validator.Validate(PatioMother.Patio1());
+        var result = _validator.Validate(PatioMother.Patio1Created());
         Assert.IsTrue(result.IsValid);
     }
     [Test]
