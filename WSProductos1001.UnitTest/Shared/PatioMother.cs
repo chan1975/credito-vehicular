@@ -58,4 +58,14 @@ public static class PatioMother
             NumberSalePoint = 1
         };
     }
+    public static EPatio Patio2ToCreate()
+    {
+        return new EPatio
+        {
+            Name = "Patio 2",
+            Address = "Patio 2",
+            Phone = "123456789",
+            NumberSalePoint = 2
+        };
+    }
 }

@@ -25,8 +25,9 @@ public class AgentRepository: IAgentRepository
         return newAgent.Entity;
     }
 
-    public Task<EAgent> GetByIdAsync(int id)
+    public async Task<EAgent> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        var result = await _context.Agents.FindAsync(id);
+        return result;
     }
 }

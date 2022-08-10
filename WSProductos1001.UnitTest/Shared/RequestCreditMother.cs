@@ -35,6 +35,22 @@ public static class RequestCreditMother
             Observation = "Observation"
         };
     }
+    public static ERequestCredit CreditRequest1Registry()
+    {
+        return new()
+        {
+            BuildDate = new DateTime(2022,1,1),
+            ClientId = 1,
+            PatioId = 1,
+            VehicleId = 1,
+            TermMonth = 1,
+            Fee = 1,
+            Entry = 1,
+            AgentId = 1,
+            Observation = "Observation",
+            CreditStatus = 1
+        };
+    }
     public static ERequestCredit CreditRequest2SameDateCredit1()
     {
         return new()

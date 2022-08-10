@@ -1,12 +1,13 @@
 ﻿using FluentValidation;
 using WSProductos1001.Domain.Exceptions;
 using WSProductos1001.Domain.Repository;
+using WSProductos1001.Domain.Services;
 using WSProductos1001.Entities;
 using ValidationException = WSProductos1001.Domain.Exceptions.ValidationException;
 
 namespace WSProductos1001.Domain.Features.RequestCredit;
 
-public class RequestCreditService
+public class RequestCreditService : IRequestCreditService
 {
     private readonly IRequestCreditRepository _requestCreditRepository;
     private readonly IClientRepository _clientRepository;
@@ -78,5 +79,13 @@ public class RequestCreditService
         
         requestCredit.CreditStatus = (int)creditStatus;
         await _requestCreditRepository.UpdateAsync(requestCredit);
+    }
+
+    public async Task<ERequestCredit> GetByIdAsync(int id)
+    {
+        var requestCredit = await _requestCreditRepository.GetByIdAsync(id);
+        if (requestCredit == null)
+            throw new NotFoundException(nameof(ERequestCredit), id);
+        return requestCredit;
     }
 }

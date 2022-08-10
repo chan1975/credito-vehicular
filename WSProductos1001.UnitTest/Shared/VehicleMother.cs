@@ -18,6 +18,20 @@ namespace WSProductos1001.UnitTest.Shared
                 LicensePlate = "ABC123",
             };
         }
+        public static EVehicle Tucson(){
+            return new EVehicle()
+            {
+                Id = 2,
+                BrandId = 1,
+                TypeId = 1,
+                Model = "Tucson",
+                ChassisNumber = "812937hy128y812y",
+                Year = 2018,
+                Appraisal = 1000000,
+                CylinderCapacity = 1600,
+                LicensePlate = "IUN153",
+            };
+        }
 
         internal static EVehicle Creta2018MissingChassis()
         {

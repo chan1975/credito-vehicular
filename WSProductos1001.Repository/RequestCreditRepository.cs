@@ -12,24 +12,28 @@ public class RequestCreditRepository: IRequestCreditRepository
     {
         _context = context;
     }
-    public Task<IEnumerable<ERequestCredit>> GetRequestCreditByClientId(int clientId)
+    public async Task<IEnumerable<ERequestCredit>> GetRequestCreditByClientId(int clientId)
     {
-        throw new NotImplementedException();
+        return await _context.RequestCredit.Where(x => x.ClientId == clientId).ToListAsync();
     }
 
-    public Task<ERequestCredit> CreateAsync(ERequestCredit requestCredit)
+    public async Task<ERequestCredit> CreateAsync(ERequestCredit requestCredit)
     {
-        throw new NotImplementedException();
+        var newRequestCredit = await _context.RequestCredit.AddAsync(requestCredit);
+        await _context.SaveChangesAsync();
+        return newRequestCredit.Entity;
     }
 
-    public Task<ERequestCredit> GetByIdAndRegsitryAsync(int id, int registryStatus)
+    public async Task<ERequestCredit> GetByIdAndRegsitryAsync(int id, int registryStatus)
     {
-        throw new NotImplementedException();
+        var requestCredit = await _context.RequestCredit.FirstOrDefaultAsync(x => x.Id == id && x.CreditStatus == registryStatus);
+        return requestCredit;
     }
 
-    public Task<ERequestCredit> UpdateAsync(ERequestCredit requestCredit)
+    public async Task UpdateAsync(ERequestCredit requestCredit)
     {
-        throw new NotImplementedException();
+        _context.RequestCredit.Update(requestCredit);
+        await _context.SaveChangesAsync();
     }
 
     public async Task<ERequestCredit> GetRequestCreditByVehicleRegistry(int vehicleId, int registryStatus)
@@ -42,5 +46,11 @@ public class RequestCreditRepository: IRequestCreditRepository
     {
         var requestCredit = await _context.RequestCredit.FirstOrDefaultAsync(x => x.ClientId == clientId && x.PatioId == patioId && x.CreditStatus == registryStatus);
         return requestCredit;
+    }
+
+    public async Task<ERequestCredit> GetByIdAsync(int id)
+    {
+        var request = await _context.RequestCredit.FirstOrDefaultAsync(x => x.Id == id);
+        return request;
     }
 }

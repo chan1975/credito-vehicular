@@ -4,6 +4,7 @@ using WSProductos1001.Domain.Features.AssignClient;
 using WSProductos1001.Domain.Features.Brand;
 using WSProductos1001.Domain.Features.Client;
 using WSProductos1001.Domain.Features.Patio;
+using WSProductos1001.Domain.Features.RequestCredit;
 using WSProductos1001.Domain.Features.Vehicle;
 using WSProductos1001.Domain.Services;
 
@@ -19,7 +20,7 @@ public static class IoC
         services.AddScoped<IAgentService, AgentService>();
         services.AddScoped<IClientService, ClientService>();
         services.AddScoped<IAssignClientService, AssignClientService>();
-        //services.AddScoped<IClientService, ClientService>();
+        services.AddScoped<IRequestCreditService, RequestCreditService>();
         
         return services;
     }
