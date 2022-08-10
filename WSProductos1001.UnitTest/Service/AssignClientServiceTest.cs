@@ -14,7 +14,7 @@ public class AssignClientServiceTest
     private Mock<IAssignClientRepository> _assignClientRepository;
     private Mock<IClientRepository> _clientRepository;
     private Mock<IPatioRepository> _patioRepository;
-    private IValidator<AssignClient> _validator;
+    private IValidator<EAssignClient> _validator;
 
     [SetUp]
     public void Setup()
@@ -33,7 +33,7 @@ public class AssignClientServiceTest
         var assignClient = AssignClientMother.CesarPatio1();
         _assignClientRepository
             .Setup(x => x.CreateAsync(assignClient))
-            .Returns(Task.FromResult<AssignClient>(AssignClientMother.CesarPatio1Created()));
+            .Returns(Task.FromResult<EAssignClient>(AssignClientMother.CesarPatio1Created()));
         _clientRepository
             .Setup(x => x.GetByIdAsync(assignClient.ClientId))
             .Returns(Task.FromResult<EClient>(ClientMother.CesarCreated()));
@@ -51,7 +51,7 @@ public class AssignClientServiceTest
         var assignClient = AssignClientMother.CesarPatio1();
         _assignClientRepository
             .Setup(x => x.CreateAsync(assignClient))
-            .Returns(Task.FromResult<AssignClient>(AssignClientMother.CesarPatio1Created()));
+            .Returns(Task.FromResult<EAssignClient>(AssignClientMother.CesarPatio1Created()));
         _clientRepository
             .Setup(x => x.GetByIdAsync(assignClient.ClientId))
             .Returns(Task.FromResult<EClient>(null));
@@ -68,7 +68,7 @@ public class AssignClientServiceTest
         var assignClient = AssignClientMother.CesarPatio1();
         _assignClientRepository
             .Setup(x => x.CreateAsync(assignClient))
-            .Returns(Task.FromResult<AssignClient>(AssignClientMother.CesarPatio1Created()));
+            .Returns(Task.FromResult<EAssignClient>(AssignClientMother.CesarPatio1Created()));
         _clientRepository
             .Setup(x => x.GetByIdAsync(assignClient.ClientId))
             .Returns(Task.FromResult<EClient>(ClientMother.CesarCreated()));
@@ -87,10 +87,10 @@ public class AssignClientServiceTest
         var assignClient = AssignClientMother.CesarPatio1Updated();
         _assignClientRepository
             .Setup(x => x.UpdateAsync(assignClient))
-            .Returns(Task.FromResult<AssignClient>(AssignClientMother.CesarPatio1Updated()));
+            .Returns(Task.FromResult<EAssignClient>(AssignClientMother.CesarPatio1Updated()));
         _assignClientRepository
             .Setup(x => x.GetByIdAsync(idAssignClient))
-            .Returns(Task.FromResult<AssignClient>(AssignClientMother.CesarPatio1Created()));
+            .Returns(Task.FromResult<EAssignClient>(AssignClientMother.CesarPatio1Created()));
         _clientRepository
             .Setup(x => x.GetByIdAsync(assignClient.ClientId))
             .Returns(Task.FromResult<EClient>(ClientMother.SandyCreated()));
@@ -106,10 +106,10 @@ public class AssignClientServiceTest
         var assignClient = AssignClientMother.CesarPatio1Updated();
         _assignClientRepository
             .Setup(x => x.UpdateAsync(assignClient))
-            .Returns(Task.FromResult<AssignClient>(AssignClientMother.CesarPatio1Updated()));
+            .Returns(Task.FromResult<EAssignClient>(AssignClientMother.CesarPatio1Updated()));
         _assignClientRepository
             .Setup(x => x.GetByIdAsync(idAssignClient))
-            .Returns(Task.FromResult<AssignClient>(null));
+            .Returns(Task.FromResult<EAssignClient>(null));
         _clientRepository
             .Setup(x => x.GetByIdAsync(assignClient.ClientId))
             .Returns(Task.FromResult<EClient>(ClientMother.SandyCreated()));

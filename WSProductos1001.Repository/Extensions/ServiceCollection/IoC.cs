@@ -14,6 +14,7 @@ public static class IoC
         services.AddScoped<ICatalogRepository, CatalogRepository>();
         services.AddScoped<IClientRepository, ClientRepository>();
         services.AddScoped<IAssignClientRepository, AssignClientRepository>();
+        services.AddScoped<IRequestCreditRepository, RequestCreditRepository>();
         return services;
     }
 }

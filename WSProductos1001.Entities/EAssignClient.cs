@@ -1,6 +1,6 @@
 ﻿namespace WSProductos1001.Entities;
 
-public class AssignClient
+public class EAssignClient
 {
     public int Id { get; set; }
     public int ClientId { get; set; }

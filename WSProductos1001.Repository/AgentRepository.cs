@@ -24,4 +24,9 @@ public class AgentRepository: IAgentRepository
         await _context.SaveChangesAsync();
         return newAgent.Entity;
     }
+
+    public Task<EAgent> GetByIdAsync(int id)
+    {
+        throw new NotImplementedException();
+    }
 }

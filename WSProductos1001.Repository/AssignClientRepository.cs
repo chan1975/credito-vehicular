@@ -5,17 +5,17 @@ namespace WSProductos1001.Repository;
 
 public class AssignClientRepository:IAssignClientRepository
 {
-    public Task<AssignClient> CreateAsync(AssignClient assignClient)
+    public Task<EAssignClient> CreateAsync(EAssignClient eAssignClient)
     {
         throw new NotImplementedException();
     }
 
-    public Task<AssignClient> UpdateAsync(AssignClient assignClient)
+    public Task<EAssignClient> UpdateAsync(EAssignClient eAssignClient)
     {
         throw new NotImplementedException();
     }
 
-    public Task<AssignClient> GetByIdAsync(int id)
+    public Task<EAssignClient> GetByIdAsync(int id)
     {
         throw new NotImplementedException();
     }

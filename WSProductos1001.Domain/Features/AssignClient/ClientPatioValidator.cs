@@ -2,7 +2,7 @@
 
 namespace WSProductos1001.Domain.Features.AssignClient;
 
-public class ClientPatioValidator: AbstractValidator<Entities.AssignClient>
+public class ClientPatioValidator: AbstractValidator<Entities.EAssignClient>
 {
     public ClientPatioValidator()
     {

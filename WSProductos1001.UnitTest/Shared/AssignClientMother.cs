@@ -4,18 +4,18 @@ namespace WSProductos1001.UnitTest.Shared;
 
 public static class AssignClientMother
 {
-    public static AssignClient CesarPatio1()
+    public static EAssignClient CesarPatio1()
     {
-        return new AssignClient()
+        return new EAssignClient()
         {
             ClientId = 1,
             PatioId = 1,
             AssignDate = DateTime.Now
         };
     } 
-    public static AssignClient CesarPatio1Created()
+    public static EAssignClient CesarPatio1Created()
     {
-        return new AssignClient()
+        return new EAssignClient()
         {
             Id = 1,
             ClientId = 1,
@@ -23,9 +23,9 @@ public static class AssignClientMother
             AssignDate = DateTime.Now
         };
     } 
-    public static AssignClient CesarPatio1Updated()
+    public static EAssignClient CesarPatio1Updated()
     {
-        return new AssignClient()
+        return new EAssignClient()
         {
             Id = 1,
             ClientId = 2,
