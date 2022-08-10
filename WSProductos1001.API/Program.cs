@@ -1,5 +1,6 @@
 using WSProductos1001.API.Filters;
 using WSProductos1001.Domain.Extensions.ServicesCollection;
+using WSProductos1001.Infrastucture.Context;
 using WSProductos1001.Infrastucture.Extensions.ServiceCollection;
 using WSProductos1001.Repository.Extensions.ServiceCollection;
 
@@ -24,6 +25,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var provider = scope.ServiceProvider;
+    using (var context = provider.GetRequiredService<CreditContext>())
+    {
+        context.Database.EnsureCreated();
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

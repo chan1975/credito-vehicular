@@ -8,7 +8,7 @@ namespace WSProductos1001.Infrastucture.Config
     {
         public void Configure(EntityTypeBuilder<EBrand> builder)
         {
-            builder.ToTable("catalogo_marca");
+            builder.ToTable("marca");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).HasColumnName("id");
             builder.Property(x => x.Name).HasColumnName("nombre").IsRequired();
