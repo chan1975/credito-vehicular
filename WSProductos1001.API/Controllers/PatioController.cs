@@ -10,9 +10,11 @@ namespace WSProductos1001.API.Controllers;
 public class PatioController : ControllerBase
 {
     private IPatioService _patioService;
-    public PatioController(IPatioService patioService)
+    private IAssignClientService _assignService;
+    public PatioController(IPatioService patioService, IAssignClientService assignService)
     {
         _patioService = patioService;
+        _assignService = assignService;
     }
 
     [HttpGet]
@@ -75,7 +77,7 @@ public class PatioController : ControllerBase
         }
         catch (NotFoundException ex)
         {
-            return NotFound();
+            return NotFound(ex.Message);
         }
         catch (ValidationException ex)
         {
@@ -104,6 +106,94 @@ public class PatioController : ControllerBase
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
+            return BadRequest(ex.Message);
+        }
+    }
+    [HttpGet("asignarcliente/{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<EPatio>> GetAssignByID(int id)
+    {
+        try
+        {
+            var patio = await _assignService.GetByIdAsync(id);
+            if (patio == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(patio);
+        }
+        catch (NotFoundException ex)
+        {
+            return NotFound(ex.Message);
+        }
+
+    }
+    [HttpPost("asignarcliente")]
+    [Consumes("application/json")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<EPatio>> AsignarCliente306(EAssignClient assignClient)
+    {
+        try
+        {
+            var newAssignClient = await _assignService.CreateAsync(assignClient);
+            return CreatedAtAction(nameof(GetAssignByID), new { id = newAssignClient.Id }, newAssignClient);
+
+        }
+        catch (ValidationException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return BadRequest(ex.Message);
+        }
+    }
+    [HttpPut("asignarcliente/{id}")]
+    [Consumes("application/json")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult> AsignarCliente306(int id, EAssignClient assignClient)
+    {
+        try
+        {
+            await _assignService.UpdateAsync(id, assignClient);
+            return NoContent();
+
+        }
+        catch (ValidationException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (NotFoundException ex)
+        {
+            return NotFound(ex.Message);
+        }
+        catch (BadRequestException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+    [HttpDelete("asignarcliente/{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult> DeleteAssign307(int id)
+    {
+        try
+        {
+            await _assignService.DeleteAsync(id);
+            return NoContent();
+        }
+        catch (NotFoundException ex)
+        {
+            return NotFound(ex.Message);
+        }
+        catch (BadRequestException ex)
+        {
             return BadRequest(ex.Message);
         }
     }

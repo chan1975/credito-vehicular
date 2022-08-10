@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using WSProductos1001.Domain.Features.Agent;
+using WSProductos1001.Domain.Features.AssignClient;
 using WSProductos1001.Domain.Features.Brand;
 using WSProductos1001.Domain.Features.Client;
 using WSProductos1001.Domain.Features.Patio;
@@ -17,6 +18,8 @@ public static class IoC
         services.AddScoped<IBrandService, BrandService>();
         services.AddScoped<IAgentService, AgentService>();
         services.AddScoped<IClientService, ClientService>();
+        services.AddScoped<IAssignClientService, AssignClientService>();
+        //services.AddScoped<IClientService, ClientService>();
         
         return services;
     }

@@ -32,5 +32,15 @@ public static class AssignClientMother
             PatioId = 1,
             AssignDate = DateTime.Now
         };
-    } 
+    }
+
+    public static EAssignClient SandyPatio1()
+    {
+        return new EAssignClient()
+        {
+            ClientId = 1,
+            PatioId = 1,
+            AssignDate = DateTime.Now
+        };
+    }
 }

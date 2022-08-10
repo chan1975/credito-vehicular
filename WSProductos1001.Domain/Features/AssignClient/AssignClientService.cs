@@ -2,12 +2,15 @@
 using WSProductos1001.Domain.Exceptions;
 using WSProductos1001.Domain.Features.RequestCredit;
 using WSProductos1001.Domain.Repository;
+using WSProductos1001.Domain.Services;
 using WSProductos1001.Entities;
 using ValidationException = FluentValidation.ValidationException;
 
 namespace WSProductos1001.Domain.Features.AssignClient;
 
-public class AssignClientService
+
+
+public class AssignClientService : IAssignClientService
 {
     private readonly IAssignClientRepository _assignClientRepository;
     private readonly IClientRepository _clientRepository;
@@ -77,5 +80,13 @@ public class AssignClientService
             throw new BadRequestException("La asignacion no puede ser eliminada, ya que existe un credito registrado para el cliente y patio");
         
         await _assignClientRepository.DeleteAsync(assignClientToDelete);
+    }
+
+    public async Task<EAssignClient> GetByIdAsync(int id)
+    {
+        var assignClient = await _assignClientRepository.GetByIdAsync(id);
+        if (assignClient == null)
+            throw new NotFoundException(nameof(EAssignClient), id);
+        return assignClient;
     }
 }

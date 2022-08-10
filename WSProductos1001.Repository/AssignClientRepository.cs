@@ -12,19 +12,23 @@ public class AssignClientRepository:IAssignClientRepository
     {
         _context = context;
     }
-    public Task<EAssignClient> CreateAsync(EAssignClient eAssignClient)
+    public async Task<EAssignClient> CreateAsync(EAssignClient eAssignClient)
     {
-        throw new NotImplementedException();
+        var result = await _context.AssignClients.AddAsync(eAssignClient);
+        await _context.SaveChangesAsync();
+        return result.Entity;
     }
 
-    public Task<EAssignClient> UpdateAsync(EAssignClient eAssignClient)
+    public async Task UpdateAsync(EAssignClient eAssignClient)
     {
-        throw new NotImplementedException();
+        _context.AssignClients.Update(eAssignClient);
+        await _context.SaveChangesAsync();
     }
 
-    public Task<EAssignClient> GetByIdAsync(int id)
+    public async Task<EAssignClient> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        var assignClient = await _context.AssignClients.FirstOrDefaultAsync(x => x.Id == id);
+        return assignClient;
     }
 
     public async Task<IEnumerable<EAssignClient>> GetByPatioId(int patioId)
@@ -33,8 +37,9 @@ public class AssignClientRepository:IAssignClientRepository
         return assignClient;
     }
 
-    public Task DeleteAsync(EAssignClient eAssignClient)
+    public async Task DeleteAsync(EAssignClient eAssignClient)
     {
-        throw new NotImplementedException();
+        _context.AssignClients.Remove(eAssignClient);
+        await _context.SaveChangesAsync();
     }
 }

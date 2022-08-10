@@ -38,8 +38,9 @@ public class RequestCreditRepository: IRequestCreditRepository
         return requestCredit;
     }
 
-    public Task<ERequestCredit> GetRequestRegistryByClientIdAndPatioId(int clientId, int patioId, int registryStatus)
+    public async Task<ERequestCredit> GetRequestRegistryByClientIdAndPatioId(int clientId, int patioId, int registryStatus)
     {
-        throw new NotImplementedException();
+        var requestCredit = await _context.RequestCredit.FirstOrDefaultAsync(x => x.ClientId == clientId && x.PatioId == patioId && x.CreditStatus == registryStatus);
+        return requestCredit;
     }
 }
