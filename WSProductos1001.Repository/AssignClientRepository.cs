@@ -19,4 +19,9 @@ public class AssignClientRepository:IAssignClientRepository
     {
         throw new NotImplementedException();
     }
+
+    public Task<IEnumerable<EAssignClient>> GetByPatioId(int patioId)
+    {
+        throw new NotImplementedException();
+    }
 }

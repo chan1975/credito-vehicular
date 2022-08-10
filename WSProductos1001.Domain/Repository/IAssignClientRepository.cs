@@ -7,4 +7,5 @@ public interface IAssignClientRepository
     Task<EAssignClient> CreateAsync(EAssignClient eAssignClient);
     Task<EAssignClient> UpdateAsync(EAssignClient eAssignClient);
     Task<EAssignClient> GetByIdAsync(int id);
+    Task<IEnumerable<EAssignClient>> GetByPatioId(int patioId);
 }

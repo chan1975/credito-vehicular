@@ -10,11 +10,14 @@ public class PatioService : IPatioService
 {
     private readonly IPatioRepository _patioRepository;
     private readonly IValidator<EPatio> _validator;
+    private readonly IAssignClientRepository _assignClientRepository;
 
-    public PatioService(IPatioRepository patioRepository, IValidator<EPatio> validator)
+    public PatioService(IPatioRepository patioRepository, IValidator<EPatio> validator,
+        IAssignClientRepository assignClientRepository)
     {
         _patioRepository = patioRepository;
         _validator = validator;
+        _assignClientRepository = assignClientRepository;
     }
     public async Task<IEnumerable<EPatio>> GetAllAsync()
     {
@@ -54,6 +57,8 @@ public class PatioService : IPatioService
     {
         var patioToDelete = await _patioRepository.GetByIdAsync(id);
         if (patioToDelete == null) throw new Exceptions.NotFoundException(nameof(EPatio), id);
+        var patioAssign = await _assignClientRepository.GetByPatioId(id);
+        if (patioAssign != null) throw new Exceptions.BadRequestException("Patio tiene asignados clientes");
         await _patioRepository.DeleteAsync(patioToDelete);
     }
 }
